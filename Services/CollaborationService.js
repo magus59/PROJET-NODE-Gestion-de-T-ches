@@ -14,14 +14,6 @@ class CollaborationService {
     return await Collaboration.create(collaboration);
   }
 
-  async updateCollaboration(id, collaboration) {
-    return await Collaboration.update(collaboration, {
-      where: {
-        taskId: id,
-      },
-    });
-  }
-
   async deleteCollaboration(id) {
     return await Collaboration.destroy({
       where: {

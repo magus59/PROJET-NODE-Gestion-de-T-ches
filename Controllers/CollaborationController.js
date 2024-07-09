@@ -31,16 +31,6 @@ class CollaborationController {
             result.json({error : "Une erreur est survenue lors de l'ajout du Collaboration"})
         }
     }
-    
-    async updateCollaboration(request, result){
-        try {
-            const collaboration = await CollaborationService.updateCollaboration(request.params.id, request.body);
-            result.json(collaboration);
-        } catch (error) {
-            result.status(500);
-            result.json({error : "Une erreur est survenue lors de la modification de la Collaboration"})
-        }
-    }
 
     async deleteCollaboration(request, result){
         try {

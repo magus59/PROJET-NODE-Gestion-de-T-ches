@@ -14,10 +14,6 @@ router.post("/", (request, result) => {
   CollaborationController.addCollaboration(request, result);
 });
 
-router.patch("/:id", (request, result) => {
-  CollaborationController.updateCollaboration(request, result);
-});
-
 router.delete("/:id", (request, result) => {
   CollaborationController.deleteCollaboration(request, result);
 });
