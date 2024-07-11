@@ -1,32 +1,44 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require('../Config/Sequelize');
+const sequelize = require("../Config/Sequelize");
+const Utilisateur = require("./Utilisateur"); 
 
 class Tache extends Model {}
 
-Tache.init({
+Tache.init(
+  {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     title: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     description: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.TEXT,
+      allowNull: false,
     },
     dueDate: {
-        type: DataTypes.DATE,
-        allowNull: false
-    }
-   
-}, {
+      type: DataTypes.DATEONLY,
+    },
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Utilisateur,
+        key: "id",
+      },
+    },
+  },
+  {
     sequelize,
-    modelName: 'Tache',
-    tableName: 'tâche',
-    timestamps: false
-});
+    modelName: "Tache",
+    tableName: "tâche",
+    timestamps: false,
+  }
+);
+
+Tache.belongsTo(Utilisateur, { as: "owner", foreignKey: "ownerId" });
 
 module.exports = Tache;
