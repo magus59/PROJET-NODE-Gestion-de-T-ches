@@ -1,33 +1,53 @@
-const { where } = require("sequelize");
-const Utilisateur = require("../Models/Utilisateur");
+// Services/UtilisateurService.js
+const Utilisateur = require('../Models/Utilisateur'); // Assurez-vous que le chemin est correct
 
 class UtilisateurService {
   async getAllUtilisateur() {
-    return await Utilisateur.findAll();
+    try {
+      return await Utilisateur.findAll();
+    } catch (error) {
+      throw error;
+    }
   }
 
-  async getUtilisateurById(utilisateurId) {
-    return await Utilisateur.findByPk(utilisateurId);
+  async getUtilisateurById(id) {
+    try {
+      return await Utilisateur.findByPk(id);
+    } catch (error) {
+      throw error;
+    }
   }
 
-  async addUtilisateur(utilisateur) {
-    return await utilisateur.create(utilisateur);
+  async addUtilisateur(data) {
+    try {
+      return await Utilisateur.create(data);
+    } catch (error) {
+      throw error;
+    }
   }
 
-  async updateUtilisateur(id, utilisateur){
-    return await Utilisateur.update(utilisateur, {
-      where : {
-        id : id
+  async updateUtilisateur(id, data) {
+    try {
+      const utilisateur = await Utilisateur.findByPk(id);
+      if (utilisateur) {
+        return await utilisateur.update(data);
       }
-    });
+      throw new Error('Utilisateur not found');
+    } catch (error) {
+      throw error;
+    }
   }
 
   async deleteUtilisateur(id) {
-    return await Utilisateur.destroy({
-      where: {
-        id: id,
-      },
-    });
+    try {
+      const utilisateur = await Utilisateur.findByPk(id);
+      if (utilisateur) {
+        return await utilisateur.destroy();
+      }
+      throw new Error('Utilisateur not found');
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

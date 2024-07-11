@@ -30,6 +30,7 @@ class UtilisateurController {
       const utilisateur = await UtilisateurService.addUtilisateur(request.body);
       result.json(utilisateur);
     } catch (error) {
+        console.log(error);
       result.status(500);
       result.json({
         error: "Une erreur est survenue lors de l'ajout de l Utilisateur",
