@@ -20,7 +20,7 @@ Tache.init(
       allowNull: false,
     },
     dueDate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
     },
     ownerId: {
       type: DataTypes.INTEGER,
